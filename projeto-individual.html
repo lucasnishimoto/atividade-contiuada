@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pagina login</title>
+  </head>
+  <body>
+    <div id="id_sumir">
+      <div >
+        <h1>Fazer login</h1>
+        email <br />
+        <input id="in_email" placeholder="digite seu email" />
+        <br />
+        senha
+        <br />
+        <input type="password" id="in_senha" placeholder="digite sua senha" />
+        <br />
+        <br />
+        perfil:
+        <select id="id_perfil">
+          <option value="selecione">selecione</option>
+          <option value="mago">mago</option>
+          <option value="soldado">soldado</option>
+          <option value="assassino">assassino</option>
+        </select>
+        <br />
+        <br />
+        <button onclick="fazer_login()">Entrar</button>
+        <button onclick="limpar()">limpar</button>
+      </div>
+      <br />
+      <div id="di_result"></div>
+      <img id="image" src="" style="width: 300px" />
+    </div>
+  </body>
+</html>
+<script>
+  var falha = 3;
+
+  function fazer_login() {
+    if (
+      in_email.value == "lucas yudi" &&
+      in_senha.value == "mortal" &&
+      id_perfil.value == "mago"
+    ) {
+      falha = 3;
+      image.src = "mago.jpg";
+      di_result.innerHTML = `<span style="color: blue" > Olá, ${in_email.value} entrou com  o perfil de ${id_perfil.value}</span>`;
+    } else if (
+      in_email.value == "caio silva" &&
+      in_senha.value == "mortal" &&
+      id_perfil.value == "assassino"
+    ) {
+      falha = 3;
+      image.src = "assassino.jpg";
+      di_result.innerHTML = `<span style="color: blue" > Olá, ${in_email.value} entrou com  o perfil de ${id_perfil.value}</span>`;
+    } else if (
+      in_email.value == "yoshiro silva" &&
+      in_senha.value == "mortal" &&
+      id_perfil.value == "soldado"
+    ) {
+      falha = 3;
+      image.src = "Soldado.png";
+      di_result.innerHTML = `<span style="color: blue" > Olá, ${in_email.value} entrou com  o perfil de ${id_perfil.value}</span>`;
+    } else {
+      
+      image.src = "";
+      di_result.innerHTML = `<span style="color: red" > Falha de autenticação! Você tem mais ${(falha -= 1)} tentativa(s)!</span>`;
+    }
+    if (falha <= 0)
+      id_sumir.innerHTML = `<span style="color:red">  Acesso bloqueado! Entre em contato com o suporte </span>`;
+    
+  }
+  function limpar() {
+    in_senha.value = "";
+    in_email.value = "";
+    id_perfil.value = "selecione";
+    di_result.innerHTML = "";
+    image.src = "";
+  }
+</script>
